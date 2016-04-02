@@ -18,13 +18,23 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var displayLabel: UILabel!
     
+    @IBOutlet weak var playerOneAtkBtn: UIButton!
+    @IBOutlet weak var playerTwoAtkBtn: UIButton!
+    
     var game: Game!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         game = Game()
-        displayLabel.text = game.gameLabel
+        updateLabel("displayLabel")
+        updateLabel("playerOneHP")
+        updateLabel("playerTwoHP")
+        if game.playerTurn == 0 {
+            playerTwoAtkBtn.hidden = true
+        } else {
+            playerOneAtkBtn.hidden = true
+        }
         
     }
 
@@ -34,10 +44,36 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onPlayerOneAttackPressed(sender: AnyObject) {
+        //logic
+        playerOneAtkBtn.hidden = true
+        playerTwoAtkBtn.hidden = false
+        game.processTurn()
+        updateLabel("displayLabel")
+        updateLabel("playerTwoHP")
+        
     }
     
     @IBAction func onPlayerTwoAttackPressed(sender: AnyObject) {
+        playerOneAtkBtn.hidden = false
+        playerTwoAtkBtn.hidden = true
+        game.processTurn()
+        updateLabel("displayLabel")
+        updateLabel("playerOneHP")
+        
     }
+    
+    func updateLabel(labelName: String) {
+        switch (labelName) {
+        case "displayLabel":
+            displayLabel.text = game.gameLabel
+        case "playerOneHP":
+            playerOneHPLabel.text = "\(game.playerOne.hp) HP"
+        case "playerTwoHP":
+            playerTwoHPLabel.text = "\(game.playerTwo.hp) HP"
+        default:
+            displayLabel.text = "No news here"
+            }
+        }
 
 }
 

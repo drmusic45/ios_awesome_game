@@ -50,24 +50,13 @@
                                     <constraint firstAttribute="height" constant="128" id="YDn-GP-U0d"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYm-Oi-lhg" userLabel="playerOneAtk">
-                                <rect key="frame" x="147" y="486" width="134" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="OEm-pA-DpH"/>
-                                    <constraint firstAttribute="width" constant="134" id="OH8-nB-AWA"/>
-                                </constraints>
-                                <state key="normal" image="player1attackbtn"/>
-                                <connections>
-                                    <action selector="onPlayerOneAttackPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PXP-UG-ba5"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2F-mj-M8e" userLabel="playerTwoAtk">
                                 <rect key="frame" x="326" y="486" width="134" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="134" id="4KI-JF-Fd4"/>
                                     <constraint firstAttribute="height" constant="49" id="yPY-zI-qir"/>
                                 </constraints>
-                                <state key="normal" image="player2attackbtn"/>
+                                <state key="normal" title="Attack" image="player2attackbtn"/>
                                 <connections>
                                     <action selector="onPlayerTwoAttackPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bSn-xd-4nZ"/>
                                 </connections>
@@ -79,7 +68,7 @@
                                     <constraint firstAttribute="width" constant="459" id="U9F-69-v94"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lc-Dg-DvC">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lc-Dg-DvC">
                                 <rect key="frame" x="351" y="499" width="85" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ICH-Py-l7z"/>
@@ -89,7 +78,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFj-oa-kLT">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFj-oa-kLT">
                                 <rect key="frame" x="172" y="498" width="85" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="Gfb-t0-2sR"/>
@@ -121,6 +110,19 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYm-Oi-lhg" userLabel="playerOneAtk">
+                                <rect key="frame" x="147" y="486" width="134" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="OEm-pA-DpH"/>
+                                    <constraint firstAttribute="width" constant="134" id="OH8-nB-AWA"/>
+                                </constraints>
+                                <state key="normal" title="Attack" image="player1attackbtn">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPlayerOneAttackPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PXP-UG-ba5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -179,8 +181,10 @@
                     </view>
                     <connections>
                         <outlet property="displayLabel" destination="tA8-64-Yas" id="ER0-3S-6Hb"/>
+                        <outlet property="playerOneAtkBtn" destination="IYm-Oi-lhg" id="R0z-zS-2sA"/>
                         <outlet property="playerOneHPLabel" destination="hu7-1f-Oui" id="75k-BW-nrx"/>
                         <outlet property="playerOneImage" destination="1XZ-4Z-CA7" id="TmP-08-A0h"/>
+                        <outlet property="playerTwoAtkBtn" destination="d2F-mj-M8e" id="gya-X3-60n"/>
                         <outlet property="playerTwoHPLabel" destination="8t5-vZ-c5O" id="iXo-KU-syt"/>
                         <outlet property="playerTwoImage" destination="cQi-a3-buO" id="boo-Wk-pKE"/>
                     </connections>

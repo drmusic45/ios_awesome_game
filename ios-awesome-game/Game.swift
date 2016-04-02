@@ -54,7 +54,7 @@ class Game {
         _playerOne = Villain(newHp: 90, newAttPwr: 10, newName: "Monster")
         _playerTwo = Hero(newHp: 120, newAttPwr: 5, newName: "Knight")
         _playerTurn = randomGenerator(2)
-        setPlayerTurnLabel()
+        setInitPlayerTurnLabel()
         
     }
     
@@ -63,19 +63,32 @@ class Game {
     }
     
     func processTurn() {
-        
-    }
-    
-    private func processAttack() {
-        
-    }
-    
-    private func setPlayerTurnLabel() {
         if playerTurn == 0 {
-            _gameLabel = "\(playerOne.name)'s turn"
+            _gameLabel = "\(playerOne.name) attacked \(playerTwo.name) for \(playerOne.attPwr) HP!"
+            processAttack(playerTurn)
+            _playerTurn = 1
+        } else {
+            _gameLabel = "\(playerTwo.name) attacked \(playerOne.name) for \(playerTwo.attPwr) HP!"
+            processAttack(playerTurn)
+            _playerTurn = 0
+        }
+    }
+    
+    private func processAttack(turn: Int) {
+        if turn == 0 {
+            playerTwo.hp -= playerOne.attPwr
+        } else {
+            playerOne.hp -= playerTwo.attPwr
+        }
+        
+    }
+    
+    private func setInitPlayerTurnLabel() {
+        if playerTurn == 0 {
+            _gameLabel = "\(playerOne.name) goes first!"
         }
         else {
-            _gameLabel = "\(playerTwo.name)'s turn"
+            _gameLabel = "\(playerTwo.name) goes first!"
         }
     }
     
