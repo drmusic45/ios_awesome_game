@@ -21,24 +21,18 @@ class Game {
     var playerOne: Character {
         get {
             return _playerOne
-        } set {
-            _playerOne = newValue
         }
     }
     
     var playerTwo: Character {
         get {
             return _playerTwo
-        } set {
-            _playerTwo = newValue
         }
     }
     
     var playerTurn: Int {
         get {
             return _playerTurn
-        } set {
-            _playerTurn = newValue
         }
     }
     
@@ -57,9 +51,11 @@ class Game {
     }
     
     init() {
-        playerOne = Villain(newHp: 90, newAttPwr: 10, newName: "Monster")
-        playerTwo = Hero(newHp: 120, newAttPwr: 5, newName: "Knight")
-        playerTurn = randomGenerator(2)
+        _playerOne = Villain(newHp: 90, newAttPwr: 10, newName: "Monster")
+        _playerTwo = Hero(newHp: 120, newAttPwr: 5, newName: "Knight")
+        _playerTurn = randomGenerator(2)
+        setPlayerTurnLabel()
+        
     }
     
     func randomGenerator(limit: UInt32) -> Int {
@@ -72,6 +68,15 @@ class Game {
     
     private func processAttack() {
         
+    }
+    
+    private func setPlayerTurnLabel() {
+        if playerTurn == 0 {
+            _gameLabel = "\(playerOne.name)'s turn"
+        }
+        else {
+            _gameLabel = "\(playerTwo.name)'s turn"
+        }
     }
     
     
