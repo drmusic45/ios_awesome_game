@@ -14,6 +14,10 @@
 		3A5911091CAF645B00FBB4B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A5911071CAF645B00FBB4B5 /* LaunchScreen.storyboard */; };
 		3A5911141CAF645C00FBB4B5 /* ios_awesome_gameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5911131CAF645C00FBB4B5 /* ios_awesome_gameTests.swift */; };
 		3A59111F1CAF645C00FBB4B5 /* ios_awesome_gameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A59111E1CAF645C00FBB4B5 /* ios_awesome_gameUITests.swift */; };
+		3A8031851CAF8A5400659C21 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8031841CAF8A5400659C21 /* Game.swift */; };
+		3A8031871CAF8B6600659C21 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8031861CAF8B6600659C21 /* Character.swift */; };
+		3A8031891CAF910600659C21 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8031881CAF910600659C21 /* Hero.swift */; };
+		3A80318B1CAF944E00659C21 /* Villain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A80318A1CAF944E00659C21 /* Villain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		3A59111A1CAF645C00FBB4B5 /* ios-awesome-gameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-awesome-gameUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A59111E1CAF645C00FBB4B5 /* ios_awesome_gameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_awesome_gameUITests.swift; sourceTree = "<group>"; };
 		3A5911201CAF645C00FBB4B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A8031841CAF8A5400659C21 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		3A8031861CAF8B6600659C21 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		3A8031881CAF910600659C21 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		3A80318A1CAF944E00659C21 /* Villain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Villain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +108,10 @@
 				3A5910FE1CAF645B00FBB4B5 /* AppDelegate.swift */,
 				3A5911001CAF645B00FBB4B5 /* ViewController.swift */,
 				3A5911021CAF645B00FBB4B5 /* Main.storyboard */,
+				3A8031841CAF8A5400659C21 /* Game.swift */,
+				3A8031861CAF8B6600659C21 /* Character.swift */,
+				3A8031881CAF910600659C21 /* Hero.swift */,
+				3A80318A1CAF944E00659C21 /* Villain.swift */,
 				3A5911051CAF645B00FBB4B5 /* Assets.xcassets */,
 				3A5911071CAF645B00FBB4B5 /* LaunchScreen.storyboard */,
 				3A59110A1CAF645B00FBB4B5 /* Info.plist */,
@@ -259,8 +271,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A8031891CAF910600659C21 /* Hero.swift in Sources */,
 				3A5911011CAF645B00FBB4B5 /* ViewController.swift in Sources */,
+				3A8031851CAF8A5400659C21 /* Game.swift in Sources */,
 				3A5910FF1CAF645B00FBB4B5 /* AppDelegate.swift in Sources */,
+				3A8031871CAF8B6600659C21 /* Character.swift in Sources */,
+				3A80318B1CAF944E00659C21 /* Villain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +501,7 @@
 				3A5911251CAF645C00FBB4B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A5911261CAF645C00FBB4B5 /* Build configuration list for PBXNativeTarget "ios-awesome-gameTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +510,7 @@
 				3A5911281CAF645C00FBB4B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A5911291CAF645C00FBB4B5 /* Build configuration list for PBXNativeTarget "ios-awesome-gameUITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +519,7 @@
 				3A59112B1CAF645C00FBB4B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

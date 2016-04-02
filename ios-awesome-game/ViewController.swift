@@ -10,9 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var playerOneImage: UIImageView!
+    @IBOutlet weak var playerTwoImage: UIImageView!
+    
+    @IBOutlet weak var playerOneHPLabel: UILabel!
+    @IBOutlet weak var playerTwoHPLabel: UILabel!
+    
+    @IBOutlet weak var displayLabel: UILabel!
+    
+    var game: Game!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        game = Game()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +32,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func onPlayerOneAttackPressed(sender: AnyObject) {
+    }
+    
+    @IBAction func onPlayerTwoAttackPressed(sender: AnyObject) {
+    }
 
 }
 
