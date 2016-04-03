@@ -12,19 +12,21 @@ import AVFoundation
 class Game {
     
     private var _playerTurn: Int!
-    private var _playerOne: Character!
-    private var _playerTwo: Character!
+    private var _playerOne: Villain!
+    private var _playerTwo: Hero!
     private var _gameText: [String: String]!
     private var _gameLabel: String!
+    private var _pwrAtkChance: Int?
+    private var _defChance: Int?
     
     
-    var playerOne: Character {
+    var playerOne: Villain {
         get {
             return _playerOne
         }
     }
     
-    var playerTwo: Character {
+    var playerTwo: Hero {
         get {
             return _playerTwo
         }
@@ -55,6 +57,8 @@ class Game {
         _playerTwo = Hero(newHp: 120, newAttPwr: 5, newName: "Knight")
         _playerTurn = randomGenerator(2)
         setInitPlayerTurnLabel()
+        _pwrAtkChance = randomGenerator(6) + 1
+        _defChance = randomGenerator(6) + 1
         
     }
     
@@ -63,22 +67,56 @@ class Game {
     }
     
     func processTurn() {
+        var tempDamage = 0
+        var tempBonusRoll: Int = randomGenerator(6) + 1
+        
         if playerTurn == 0 {
-            _gameLabel = "\(playerOne.name) attacked \(playerTwo.name) for \(playerOne.attPwr) HP!"
-            processAttack(playerTurn)
+            if tempBonusRoll == _pwrAtkChance! {
+                playerOne.powerAttackFlag = true
+            }
+            tempDamage = processAttack(playerTurn)
+            playerOne.powerAttackFlag = false
+            _gameLabel = "\(playerOne.name) attacked \(playerTwo.name) for \(tempDamage) HP!"
             _playerTurn = 1
         } else {
-            _gameLabel = "\(playerTwo.name) attacked \(playerOne.name) for \(playerTwo.attPwr) HP!"
-            processAttack(playerTurn)
+            if tempBonusRoll == _defChance! {
+                playerTwo.defenseFlag = true
+            }
+            tempDamage = processAttack(playerTurn)
+            playerTwo.defenseFlag = false
+            _gameLabel = "\(playerTwo.name) attacked \(playerOne.name) for \(tempDamage) HP!"
+            
             _playerTurn = 0
         }
     }
     
-    private func processAttack(turn: Int) {
+    private func processAttack(turn: Int) -> Int {
+        
+        var tempDamage: Int = 0
+        
         if turn == 0 {
-            playerTwo.hp -= playerOne.attPwr
+            if (playerOne.powerAttackFlag) {
+               tempDamage = playerOne.attPwr * 2
+                playerTwo.hp -= tempDamage
+                return tempDamage
+            } else {
+                tempDamage = playerOne.attPwr
+              playerTwo.hp -= tempDamage
+                return tempDamage
+            }
+            
         } else {
-            playerOne.hp -= playerTwo.attPwr
+            if (playerTwo.defenseFlag) {
+                tempDamage = playerTwo.attPwr / 2
+                playerOne.hp -= tempDamage
+                return tempDamage
+            }
+            else {
+                tempDamage = playerTwo.attPwr
+                playerOne.hp -= tempDamage
+                return tempDamage
+            }
+            
         }
         
     }
