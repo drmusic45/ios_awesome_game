@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         } else {
             playerOneAtkBtn.hidden = true
         }
+        game.playMusic()
         
     }
 
@@ -50,6 +51,10 @@ class ViewController: UIViewController {
         game.processTurn()
         updateLabel("displayLabel")
         updateLabel("playerTwoHP")
+        if (!game.playerTwo.isAlive) {
+            playerTwoImage.hidden = true
+            playerTwoAtkBtn.hidden = true
+        }
         
     }
     
@@ -59,6 +64,10 @@ class ViewController: UIViewController {
         game.processTurn()
         updateLabel("displayLabel")
         updateLabel("playerOneHP")
+        if (!game.playerOne.isAlive) {
+            playerOneImage.hidden = true
+            playerOneAtkBtn.hidden = true
+        }
         
     }
     

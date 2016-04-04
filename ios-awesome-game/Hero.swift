@@ -24,4 +24,5 @@ class Hero: Character {
         super.init(newHp: newHp, newAttPwr: newAttPwr, newName: newName)
         self.defenseFlag = false
     }
+    
 }

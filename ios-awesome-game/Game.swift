@@ -14,10 +14,11 @@ class Game {
     private var _playerTurn: Int!
     private var _playerOne: Villain!
     private var _playerTwo: Hero!
-    private var _gameText: [String: String]!
     private var _gameLabel: String!
     private var _pwrAtkChance: Int?
     private var _defChance: Int?
+    private var _attackSound: AVAudioPlayer!
+    private var _bgm: AVAudioPlayer!
     
     
     var playerOne: Villain {
@@ -38,14 +39,6 @@ class Game {
         }
     }
     
-    var gameText: [String: String] {
-        get {
-            return _gameText
-        } set {
-            _gameText = newValue
-        }
-    }
-    
     var gameLabel: String {
         get {
             return _gameLabel
@@ -60,6 +53,14 @@ class Game {
         _pwrAtkChance = randomGenerator(6) + 1
         _defChance = randomGenerator(6) + 1
         
+        let attackSoundPath = NSBundle.mainBundle().pathForResource("bgm", ofType: "wav")
+        let attackSoundURL = NSURL(fileURLWithPath: attackSoundPath!)
+        
+        do {
+            try _bgm = AVAudioPlayer(contentsOfURL: attackSoundURL)
+        } catch let err as NSError {
+            print(err.debugDescription)
+        }
     }
     
     func randomGenerator(limit: UInt32) -> Int {
@@ -74,16 +75,29 @@ class Game {
             if tempBonusRoll == _pwrAtkChance! {
                 playerOne.powerAttackFlag = true
             }
-            tempDamage = processAttack(playerTurn)
-            playerOne.powerAttackFlag = false
-            _gameLabel = "\(playerOne.name) attacked \(playerTwo.name) for \(tempDamage) HP!"
-            _playerTurn = 1
-        } else {
             if tempBonusRoll == _defChance! {
                 playerTwo.defenseFlag = true
             }
             tempDamage = processAttack(playerTurn)
+            playerOne.powerAttackFlag = false
             playerTwo.defenseFlag = false
+            if (playerTwo.hp <= 0) {
+                playerTwo.isAlive = false
+                _gameLabel = "\(playerOne.name) is victorious!"
+            }
+            else {
+               _gameLabel = "\(playerOne.name) attacked \(playerTwo.name) for \(tempDamage) HP!"
+            }
+            
+            _playerTurn = 1
+        } else {
+            tempDamage = processAttack(playerTurn)
+            playerOne.powerAttackFlag = false
+            playerTwo.defenseFlag = false
+            if (playerOne.hp <= 0) {
+                playerOne.isAlive = false
+                _gameLabel = "\(playerTwo.name) is victorious!"
+            }
             _gameLabel = "\(playerTwo.name) attacked \(playerOne.name) for \(tempDamage) HP!"
             
             _playerTurn = 0
@@ -99,24 +113,20 @@ class Game {
                tempDamage = playerOne.attPwr * 2
                 playerTwo.hp -= tempDamage
                 return tempDamage
+            } else if (playerTwo.defenseFlag) {
+                tempDamage = playerOne.attPwr / 2
+                playerTwo.hp -= tempDamage
+                return tempDamage
             } else {
                 tempDamage = playerOne.attPwr
-              playerTwo.hp -= tempDamage
+                playerTwo.hp -= tempDamage
                 return tempDamage
             }
             
         } else {
-            if (playerTwo.defenseFlag) {
-                tempDamage = playerTwo.attPwr / 2
-                playerOne.hp -= tempDamage
-                return tempDamage
-            }
-            else {
-                tempDamage = playerTwo.attPwr
-                playerOne.hp -= tempDamage
-                return tempDamage
-            }
-            
+            tempDamage = playerTwo.attPwr
+            playerOne.hp -= tempDamage
+            return tempDamage
         }
         
     }
@@ -129,6 +139,17 @@ class Game {
             _gameLabel = "\(playerTwo.name) goes first!"
         }
     }
+    
+    func playMusic() {
+        if _bgm.playing {
+            _bgm.stop()
+        }
+        else {
+            _bgm.play()
+        }
+    }
+    
+    
     
     
 
